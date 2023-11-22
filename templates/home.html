@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API with Database</title>
+    <style>
+        table,th,td{
+            /* border: 3px solid black; */
+            border-collapse: collapse;
+            text-align: center;
+            margin: 0 auto;
+        }
+        h1{
+            text-align: center;
+            margin: 0 700px;
+            font-size: 30px;
+        }
+
+        h2{
+            margin: 0 1520px;
+        }
+
+    </style>
+</head>
+<body>
+
+
+{% extends "base.html" %}
+
+{% block content%}
+
+<h1>Finance Management</h1><br><br>
+
+<a href="{{url_for('home')}}" class="btn btn-dark">add user</a>
+<a href="{{url_for('login')}}" class="btn btn-dark">go back</a><br><br>
+
+<table class="table">
+    <tr>
+        <th>S.No</th>
+        <th>Name</th>
+        <th>Fund Name</th>
+        <th>Invested Amount</th>
+        <th>Unitsheld</th>
+        <th>Nav</th>
+        <th>Current Value</th>
+        <th>Growth</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    {%for i in data%}
+    <tr>
+        <td>{{loop.index}}</td>
+        <td>{{i.name}}</td>
+        <td>{{i.fundcode}}</td>
+        <td>{{i.Invested}}</td>
+        <td>{{i.unitsheld}}</td>
+        <td>{{i.nav}}</td>
+        <td>{{i.current_value}}</td>
+        <td>{{i.growth}}</td>
+        <td><a href="{{url_for('edit_user',id=loop.index)}}" class="btn btn-primary">Edit</a></td>
+        <td><a href="{{url_for('delete_user',id=loop.index)}}" class="btn btn-danger">delete</a></td>
+    </tr>
+    {%endfor%}
+    
+</table>
+
+</body>
+</html>
+
+
+
+
+
+
+{% endblock %}
